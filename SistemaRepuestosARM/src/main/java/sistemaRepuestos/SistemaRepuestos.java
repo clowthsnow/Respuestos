@@ -5,6 +5,7 @@
  */
 package sistemaRepuestos;
 
+import controlador.UsuarioDAO;
 import vista.FormLogin;
 
 

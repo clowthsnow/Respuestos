@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.Usuario;
-import modelo.UsuarioDAO;
+import controlador.UsuarioDAO;
 
 public class FormLogin extends javax.swing.JFrame {
     Usuario usuario=null;
