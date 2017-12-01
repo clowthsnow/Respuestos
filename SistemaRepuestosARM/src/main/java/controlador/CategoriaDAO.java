@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Conexion;
 import modelo.Categoria;
+import modelo.Cliente;
 /**
  *
  * @author Liliana
@@ -77,6 +78,27 @@ public class CategoriaDAO {
         }
         return rptaRegistro;
     }
+    
+    public ArrayList<Categoria> listarCategoria(){
+        ArrayList listaCategoria = new ArrayList();
+        Categoria categoria;
+        try {
+            Connection accesoDB = conexion.getConexion();
+            PreparedStatement ps = accesoDB.prepareStatement("Select * from CATEGORIA");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                categoria = new Categoria();
+                categoria.setCodigo(rs.getString(1));
+                categoria.setDescripcion(rs.getString(2));    
+                
+                listaCategoria.add(categoria);
+            }
+            accesoDB.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaCategoria;
+    }   
     }
    
     
