@@ -49,7 +49,7 @@ public class ProveedorDAO {
          Boolean q=false;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("INSERT INTO `qbank`.`PROVEEDOR` (`RUC`, `razonSocial`, `direccion`, `correo`, `Telefono`) VALUES (?, ?, ?, ?, ?);");
+            CallableStatement cs = accesoDB.prepareCall("INSERT INTO `PROVEEDOR` (`RUC`, `razonSocial`, `direccion`, `correo`, `Telefono`) VALUES (?, ?, ?, ?, ?);");
             cs.setString(1, proveedor.getRUC());
             cs.setString(2, proveedor.getRazonSocial());
             cs.setString(3, proveedor.getDireccion());
@@ -70,7 +70,7 @@ public class ProveedorDAO {
         Boolean rptaRegistro = false;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("UPDATE  `qbank`.`USUARIO` SET  `UsuNom` = ?,`UsuContra` =  ?,`UsuTip` =  ?,`UsuEstReg` =  ? WHERE  `USUARIO`.`UsuCod` =?");
+            CallableStatement cs = accesoDB.prepareCall("UPDATE  `USUARIO` SET  `UsuNom` = ?,`UsuContra` =  ?,`UsuTip` =  ?,`UsuEstReg` =  ? WHERE  `USUARIO`.`UsuCod` =?");
             cs.setString(1, proveedor.getRUC());
             cs.setString(2, proveedor.getRazonSocial());
             cs.setString(3, proveedor.getDireccion());
@@ -91,7 +91,7 @@ public class ProveedorDAO {
         Boolean rptaRegistro = false;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("UPDATE  `qbank`.`USUARIO` SET  `UsuEstReg` =  'I' WHERE  `USUARIO`.`UsuCod` =?");
+            CallableStatement cs = accesoDB.prepareCall("UPDATE  `USUARIO` SET  `UsuEstReg` =  'I' WHERE  `USUARIO`.`UsuCod` =?");
             cs.setString(1, proveedor.getRUC());
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
@@ -129,7 +129,7 @@ public class ProveedorDAO {
         Boolean rptaRegistro = false;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("UPDATE  `qbank`.`USUARIO` SET  `UsuNom` = ?,`UsuContra` =  ?,`UsuTip` =  ?,`UsuEstReg` =  ? WHERE  `USUARIO`.`UsuCod` =?");
+            CallableStatement cs = accesoDB.prepareCall("UPDATE  `USUARIO` SET  `UsuNom` = ?,`UsuContra` =  ?,`UsuTip` =  ?,`UsuEstReg` =  ? WHERE  `USUARIO`.`UsuCod` =?");
             cs.setString(1, ruc);
             cs.setString(2, razonSocial);
             cs.setString(3, direccion);

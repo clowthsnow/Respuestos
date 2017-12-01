@@ -66,7 +66,7 @@ public class OrigenDAO {
         Boolean q=false;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("INSERT INTO `repuestos`.`ORIGEN` (`OrigenId`, `OrigenDescripcion`) VALUES (?, ?);");
+            CallableStatement cs = accesoDB.prepareCall("INSERT INTO `ORIGEN` (`OrigenId`, `OrigenDescripcion`) VALUES (?, ?);");
             cs.setString(1, origen.getCodigo());
             cs.setString(2, origen.getDescripcion());
             
