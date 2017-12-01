@@ -29,12 +29,9 @@ public class CategoriaDAO {
         try{
             Connection accesoDB = conexion.getConexion();
             CallableStatement cs = accesoDB.prepareCall("INSERT INTO categoria(CategoriaId, CategoriaDescripcion, CategoriaEstReg) VALUES (?, ?, ?);");
-            cs.setString(1, dni);
-            cs.setString(2, nombre);
-            cs.setString(3, direccion);
-            cs.setString(4, correo);
-            cs.setString(5, telefono);
-            cs.setString(6, "A");
+            cs.setString(1, categoria.getCodigo());
+            cs.setString(2, categoria.getDescripcion());
+            cs.setString(3, "A");
                     
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
@@ -45,18 +42,15 @@ public class CategoriaDAO {
         }
         return rptaRegistro;
     }
-    public String modificarCliente(String dni, String nombre, String direccion,String correo, String telefono, String tipo){
+    public String modificarCategoria(Categoria categoria){
         String rptaRegistro = null;
         
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("UPDATE cliente SET ClienteNombre = ?, ClienteDireccion = ?, ClienteCorreo = ?, ClienteTelefono = ? , ClienteEstReg = ? WHERE ClienteId=?;");
-            cs.setString(1, nombre);
-            cs.setString(2, direccion);
-            cs.setString(3, correo);
-            cs.setString(4, telefono);
-            cs.setString(5, "A");
-            cs.setString(6, dni);
+            CallableStatement cs = accesoDB.prepareCall("UPDATE categoria SET CategoriaDescripcion = ? WHERE CategoriaCodigo=?;");
+            cs.setString(1, categoria.getDescripcion());
+            cs.setString(2, "A");
+            cs.setString(3, categoria.getCodigo());
             
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
@@ -67,12 +61,12 @@ public class CategoriaDAO {
         }
         return rptaRegistro;
     }
-    public String eliminarCliente(String dni){
+    public String eliminarCategoria(Categoria categoria){
         String rptaRegistro = null;
         try{
             Connection accesoDB = conexion.getConexion();
-            CallableStatement cs = accesoDB.prepareCall("UPDATE  cliente SET  ClienteEstReg =  'I' WHERE ClienteId =?");
-            cs.setString(1, dni);
+            CallableStatement cs = accesoDB.prepareCall("UPDATE  categoria SET  CategoriaEstReg =  'I' WHERE CategoriaCodigo =?");
+            cs.setString(1, categoria.getCodigo());
             
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
