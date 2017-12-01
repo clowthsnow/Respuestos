@@ -90,7 +90,7 @@ public class ClienteDAO {
         Cliente cliente;
         try {
             Connection accesoDB = conexion.getConexion();
-            PreparedStatement ps = accesoDB.prepareStatement("Select * from CATEGORIA");
+            PreparedStatement ps = accesoDB.prepareStatement("Select * from CLIENTE");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 cliente = new Cliente();
