@@ -11,29 +11,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Conexion;
+import modelo.Cliente;
 /**
  *
  * @author Liliana
  */
 public class ClienteDAO {
-    final String INSERT = "INSERT INTO cliente(ClienteId, ClienteNombre, ClienteDireccion, ClienteCorreo, ClienteTelefono, ClienteEstReg) VALUES (NULL, ?, ?, ?, ?);";
     Conexion conexion;
     
     public ClienteDAO(){
         conexion = new Conexion();
     }
     
-    public String agregarCliente(String dni, String nombre, String direccion, String correo, String telefono){
+    public String agregarCliente(Cliente cliente){
          String rptaRegistro = null;
         
         try{
             Connection accesoDB = conexion.getConexion();
             CallableStatement cs = accesoDB.prepareCall("INSERT INTO cliente(ClienteId, ClienteNombre, ClienteDireccion, ClienteCorreo, ClienteTelefono, ClienteEstReg) VALUES (?, ?, ?, ?, ?,?);");
-            cs.setString(1, dni);
-            cs.setString(2, nombre);
-            cs.setString(3, direccion);
-            cs.setString(4, correo);
-            cs.setString(5, telefono);
+            cs.setString(1, cliente.getDni());
+            cs.setString(2, cliente.getNombre());
+            cs.setString(3, cliente.getDireccion());
+            cs.setString(4, cliente.getCorreo());
+            cs.setString(5, cliente.getTelefono());
             cs.setString(6, "A");
                     
             int numFAfectadas = cs.executeUpdate();
@@ -45,18 +45,18 @@ public class ClienteDAO {
         }
         return rptaRegistro;
     }
-    public String modificarCliente(String dni, String nombre, String direccion,String correo, String telefono, String tipo){
+    public String modificarCliente(Cliente cliente){
         String rptaRegistro = null;
         
         try{
             Connection accesoDB = conexion.getConexion();
             CallableStatement cs = accesoDB.prepareCall("UPDATE cliente SET ClienteNombre = ?, ClienteDireccion = ?, ClienteCorreo = ?, ClienteTelefono = ? , ClienteEstReg = ? WHERE ClienteId=?;");
-            cs.setString(1, nombre);
-            cs.setString(2, direccion);
-            cs.setString(3, correo);
-            cs.setString(4, telefono);
+            cs.setString(1, cliente.getNombre());
+            cs.setString(2, cliente.getDireccion());
+            cs.setString(3, cliente.getCorreo());
+            cs.setString(4, cliente.getTelefono());
             cs.setString(5, "A");
-            cs.setString(6, dni);
+            cs.setString(6, cliente.getDni());
             
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
@@ -67,12 +67,12 @@ public class ClienteDAO {
         }
         return rptaRegistro;
     }
-    public String eliminarCliente(String dni){
+    public String eliminarCliente(Cliente cliente){
         String rptaRegistro = null;
         try{
             Connection accesoDB = conexion.getConexion();
             CallableStatement cs = accesoDB.prepareCall("UPDATE  cliente SET  ClienteEstReg =  'I' WHERE ClienteId =?");
-            cs.setString(1, dni);
+            cs.setString(1, cliente.getDni());
             
             int numFAfectadas = cs.executeUpdate();
             if(numFAfectadas > 0)
