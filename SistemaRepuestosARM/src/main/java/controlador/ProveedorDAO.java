@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelo.Conexion;
+import modelo.Proveedor;
 
 /**
  *
