@@ -5,7 +5,6 @@
  */
 package vista;
 
-import controlador.ControladorPantPrincipal;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modelo.UsuarioDAO;

@@ -5,6 +5,8 @@
  */
 package sistemaRepuestos;
 
+import vista.FormLogin;
+
 
 
 /**
